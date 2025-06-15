@@ -1,0 +1,15 @@
+# Ignore folders, and all untracked folders folders
+dataset/
+extracted/
+*/
+
+
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+
+# Ignore logs
+logs/
+*.log
+sample.json

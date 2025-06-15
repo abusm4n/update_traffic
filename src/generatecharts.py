@@ -49,12 +49,15 @@ def generate_mime_pie(data):
     mime_counts = Counter(mimelist)
     magic_counts = Counter(file_desc_list)
 
-    df_mime = pandas.DataFrame.from_dict(mime_counts, orient='index').sort_index(1)
+    df_mime = pandas.DataFrame.from_dict(mime_counts, orient='index').sort_index()
     df_magic = pandas.DataFrame.from_dict(magic_counts, orient='index')
-    #print(df_mime)
+
     df_mime_plot = df_mime.plot.bar()
     df_mime_plot.set_xlabel("Mime Type of Extracted Data")
-    df_mime_plot.savefig('df_mime_plot.png')
+
+    out_path = os.path.join(args.output, 'df_mime_plot.png')
+    df_mime_plot.figure.savefig(out_path)
+    print(f"[+] Saved MIME chart to {out_path}")
 
 def get_device_by_uuid(uuid):
     for device in device_metadata:
@@ -98,5 +101,5 @@ def generate_tls_charts(data):
         device_metadata=get_device_by_uuid(DEVICE_UUID)
         device_label = device_metadata['device']
 
-#generate_mime_pie(data['results'])
-#generate_update_endpoint_chart(data['results'])
+generate_mime_pie(data['results'])
+generate_update_endpoint_chart(data['results'])

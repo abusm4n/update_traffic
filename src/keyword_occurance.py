@@ -1,83 +1,81 @@
 #!/usr/bin/env python3
 
 import os
+import csv
 import argparse
-import pickle
-import json
-from collections import defaultdict
-import matplotlib.pyplot as plt
-import pandas as pd
+from pathlib import Path
+from joblib import Parallel, delayed
+import pyshark
+from tqdm import tqdm
+from multiprocessing import Manager
 
-parser = argparse.ArgumentParser(description='Keyword Occurrence Chart by Device')
+# Define keywords
+KEYWORDS = ['update', 'upgrade', 'firmware', 'software', 'download']
 
-PICKLE_FILE_CONST = "file_metadata.pickle"
-ANAL_RESULTS_CONST = "bin_results.json"
-
-parser.add_argument('input', type=str, help='Input dir')
-parser.add_argument('output', type=str, help='Output dir')
-
+# Parse arguments
+parser = argparse.ArgumentParser(description='Search PCAPs for update-related keywords')
+parser.add_argument('input_dir', type=str, help='Directory of .pcap files to scan recursively')
+parser.add_argument('output_csv', type=str, help='Path to output CSV file with matches')
 args = parser.parse_args()
-input_dir = args.input
-output_dir = args.output
 
-# Load JSON analysis results
-with open(os.path.join(input_dir, ANAL_RESULTS_CONST), 'r') as f:
-    data = json.load(f)
-    print("[+] Loaded packet JSON")
+input_dir = Path(args.input_dir).resolve()
+output_csv = Path(args.output_csv).resolve()
+pcap_files = list(input_dir.rglob('*.pcap'))
+total_files = len(pcap_files)
 
-# Load device metadata (pickle)
-with open(os.path.join(input_dir, PICKLE_FILE_CONST), 'rb') as f:
-    device_metadata = pickle.load(f)
-    print("[+] Loaded metadata pickle")
+print(f"[+] Found {total_files} .pcap files to scan.")
 
-# Helper to look up device info by UUID
-def get_device_by_uuid(uuid):
-    for device in device_metadata:
-        if device['uuid'] == uuid:
-            return device 
+def search_keywords_in_pcap(filepath):
+    try:
+        cap = pyshark.FileCapture(str(filepath), use_json=True, include_raw=True, decode_as={}, keep_packets=False)
+        for packet in cap:
+            packet_str = str(packet).lower()
+            if any(keyword in packet_str for keyword in KEYWORDS):
+                cap.close()
+                return str(filepath)
+        cap.close()
+    except Exception as e:
+        print(f"[!] Error reading {filepath}: {e}")
     return None
 
-# Define keywords to look for
-keywords = ['tls', 'firmware', 'encrypted', 'update', 'patch', 'ota']
+def worker(file_path, progress_queue):
+    result = search_keywords_in_pcap(file_path)
+    progress_queue.put(1)  # Notify progress
+    return result
 
-# Track keyword counts per device
-keyword_device_counter = defaultdict(lambda: defaultdict(int))
+# Use Manager for progress queue
+with Manager() as manager:
+    progress_queue = manager.Queue()
 
-# Iterate through analysis results
-for device_result in data['results']:
-    uuid = device_result['uuid']
-    device_info = get_device_by_uuid(uuid)
-    if not device_info:
-        continue
-    device_name = device_info['device']
+    # Start tqdm listener
+    from threading import Thread
 
-    file_infos = device_result.get('file_infos', [])
-    for file_info in file_infos:
-        update_meta = file_info.get('update_meta', {})
-        for key in update_meta.keys():
-            key_lower = key.lower()
-            for keyword in keywords:
-                if keyword in key_lower:
-                    keyword_device_counter[device_name][keyword] += 1
+    def progress_listener(total, queue):
+        with tqdm(total=total, desc="Scanning PCAPs", unit="file") as pbar:
+            for _ in range(total):
+                queue.get()
+                pbar.update(1)
 
-# Convert to DataFrame
-df = pd.DataFrame(keyword_device_counter).fillna(0).astype(int).T  # Devices as rows
+    progress_thread = Thread(target=progress_listener, args=(total_files, progress_queue))
+    progress_thread.start()
 
-# Remove devices with no keyword occurrences
-df = df[df.sum(axis=1) > 0]
+    # Parallel execution
+    results = Parallel(n_jobs=5)(
+        delayed(worker)(f, progress_queue) for f in pcap_files
+    )
 
-# Plot if there's data
-if df.empty:
-    print("[-] No keyword occurrences found for any device. No chart generated.")
-else:
-    ax = df.plot(kind='barh', stacked=True, figsize=(12, 8))
-    ax.set_title('Keyword Occurrence by Device')
-    ax.set_xlabel('Keyword Occurrences')
-    ax.set_ylabel('Device')
-    plt.tight_layout()
+    progress_thread.join()
 
-    # Save plot
-    os.makedirs(output_dir, exist_ok=True)
-    out_path = os.path.join(output_dir, 'keyword_occurrence_by_device.png')
-    plt.savefig(out_path)
-    print(f"[+] Saved chart to {out_path}")
+# Filter results
+matches = [r for r in results if r]
+
+# Save to CSV
+output_csv.parent.mkdir(parents=True, exist_ok=True)
+with open(output_csv, 'w', newline='') as f:
+    writer = csv.writer(f)
+    writer.writerow(['matched_pcap'])
+    for match in matches:
+        writer.writerow([match])
+
+print(f"[+] Found {len(matches)} matching .pcap files.")
+print(f"[+] Matches saved to: {output_csv}")

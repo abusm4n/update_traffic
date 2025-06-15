@@ -1,16 +1,16 @@
-
-For extracting http traffics
-
-
-python3 extract.py ~/update_traffic/dataset/ ~/update_traffic/extracted/
+src/keyword_occurance.py ~/update_traffic/dataset/ ~/update_traffic/keywords/matching_pcaps.csv
+For extracting update-related network traffics.
+Found 6,315 network traffic, this took  4:02:53 hours.
 
 
-For analzying
+python3 src/extract.py ~/update_traffic/dataset/ ~/update_traffic/extracted/
+For extracting http traffics from pcap files
 
-python3 analyzeFiles.py  ~/update_traffic/extracted/
+python3 src/analysis.py  ~/update_traffic/extracted/
+For analzying extracted pcap
 
 
-python3 generatecharts.py  ~/update_traffic/extracted/ ~/update_traffic/output/
+python3 src/generatecharts.py  ~/update_traffic/extracted/ ~/update_traffic/output/
 Loaded packet JSON
 Loaded metadata pickle
 Saved MIME type chart to /home/ab/update_traffic/output/df_mime_plot.png
@@ -18,3 +18,10 @@ Saved MIME type chart to /home/ab/update_traffic/output/df_mime_plot.png
 Saved update endpoint chart to /home/ab/update_traffic/output/df_meta_update_counts.png
 
 
+
+python3 src/check_true_updates.py ~/update_traffic/extracted_iot-data/
+
+
+
+
+python3 src/generatecharts.py  ~/update_traffic/tls_iot-data/  ~/update_traffic/output/
