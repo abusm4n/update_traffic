@@ -1,10 +1,11 @@
-src/keyword_occurance.py ~/update_traffic/dataset/ ~/update_traffic/keywords/matching_pcaps.csv
-For extracting update-related network traffics.
-Found 6,315 network traffic, this took  4:02:53 hours.
 
-
-python3 src/extract.py ~/update_traffic/dataset/ ~/update_traffic/extracted/
+python3 src/extract_http.py ~/update_traffic/dataset/ ~/update_traffic/extracted/foldername
 For extracting http traffics from pcap files
+
+
+
+
+
 
 python3 src/analysis.py  ~/update_traffic/extracted/
 For analzying extracted pcap
@@ -19,9 +20,81 @@ Saved update endpoint chart to /home/ab/update_traffic/output/df_meta_update_cou
 
 
 
+
+
+
+
+
+
+
+
+
+
 python3 src/check_true_updates.py ~/update_traffic/extracted_iot-data/
 
 
 
 
 python3 src/generatecharts.py  ~/update_traffic/tls_iot-data/  ~/update_traffic/output/
+
+
+
+
+
+src/keyword_occurance.py ~/update_traffic/dataset/ ~/update_traffic/keywords/matching_pcaps.csv
+For extracting update-related network traffics.
+Found 6,315 network traffic, this took  4:02:53 hours.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+python3 src/extract_http.py ~/update_traffic/update_keywords/dataset/ ~/update_traffic/update_keywords/extracted/iot-idle/
+Extracting objects to  /home/ab/update_traffic/update_keywords/extracted/iot-idle
+Begin parallel execution
+0 / 6315
+1000 / 6315
+2000 / 6315
+3000 / 6315
+4000 / 6315
+5000 / 6315
+6000 / 6315
+The pickle has been tickled
+
+
+
+python3 src/analysis.py  ~/update_traffic/update_keywords/extracted/iot-idle/
+Loaded extraction data 6315
+--- writing results ---
+
+
+
+python3 src/check_true_updates.py  ~/update_traffic/update_keywords/extracted/iot-idle/
+
+
+Do the same for data 
+Change idle to data in the extract_http.py file
+
+
+
+
+
+
+
+
+
+
+
+
