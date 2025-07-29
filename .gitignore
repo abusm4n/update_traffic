@@ -1,7 +1,9 @@
 # Ignore folders, and all untracked folders folders
 dataset/
 extracted/
-*/
+imc19_dataset/
+extracted_keywords/
+
 
 
 
@@ -13,4 +15,4 @@ __pycache__/
 logs/
 *.log
 sample.json
-sample.csv  
+sample.csv
