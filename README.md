@@ -62,8 +62,8 @@ extracting
 
 ####
 Exract ecryption information, include:
-Cipher suies and certificate:
-python3 src/tls_cert.py  ~/update_traffic/update_keywords/dataset/iot-data/uk/allure-speaker/android_lan_audio_off/2019-05-04_19:52:11.65s.pcap
+Cipher suies and certificate: Examples
+python3 src/tls_cert.py  ~/update_traffic/dataset/update_dataset/iot-data/uk/appletv/local_menu/2019-04-11_20:16:54.33s.pcap
 
 
 
