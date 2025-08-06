@@ -6,7 +6,7 @@ def expand_path(path):
     return os.path.expanduser(path.strip())
 
 # Path to the CSV file containing full file paths
-csv_file_path = expand_path('~/update_traffic/update_keywords/matching_pcaps.csv')
+csv_file_path = expand_path('~/update_traffic/update_keywords/update_related_pcaps.csv')
 
 # Base path to preserve directory structure relative to this
 base_path = expand_path('~/update_traffic/dataset/')

@@ -1,6 +1,15 @@
 # Update Traffic Analysis for IoT Devices
 
 
+
+## First exract update-related_kewords,
+This script processed the 34,586 pcaps files to 6,315
+
+src/keyword_occurance.py ~/update_traffic/dataset/ ~/update_traffic/dataset/update_related_pcaps.csv
+For extracting update-related network traffics.
+Found 6,315 network traffic, this took  4:02:53 hours.
+
+
 ## Exracting encrypted and unecrypted packets from the dataset 
 
 
@@ -40,10 +49,6 @@ python3 src/generatecharts.py  ~/update_traffic/tls_iot-data/  ~/update_traffic/
 
 
 
-
-src/keyword_occurance.py ~/update_traffic/dataset/ ~/update_traffic/keywords/matching_pcaps.csv
-For extracting update-related network traffics.
-Found 6,315 network traffic, this took  4:02:53 hours.
 
 
 

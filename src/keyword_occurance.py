@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+
+
 import os
 import csv
 import argparse
@@ -73,9 +75,9 @@ matches = [r for r in results if r]
 output_csv.parent.mkdir(parents=True, exist_ok=True)
 with open(output_csv, 'w', newline='') as f:
     writer = csv.writer(f)
-    writer.writerow(['matched_pcap'])
+    writer.writerow(['update_related_pcaps'])
     for match in matches:
         writer.writerow([match])
 
-print(f"[+] Found {len(matches)} matching .pcap files.")
+print(f"[+] Found {len(matches)} update_related .pcap files.")
 print(f"[+] Matches saved to: {output_csv}")
