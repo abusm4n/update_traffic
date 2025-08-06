@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+#
+# Extractor that is used for dumping PCAP file contents for the intl-iot dataset
+# This tool dumps HTTP data only using tshark
+# Author: Ahmad Usman
 
 import os
 import argparse

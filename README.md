@@ -1,7 +1,7 @@
 # Update Traffic Analysis for IoT Devices
 
 
-
+## Exracting encrypted and unecrypted packets from the dataset 
 
 
 python3 src/extract_http.py ~/update_traffic/dataset/ ~/update_traffic/extracted/foldername
