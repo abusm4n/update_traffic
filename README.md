@@ -3,7 +3,7 @@
 
 
 ## First exract update-related_kewords,
-This script processed the 34,586 pcaps files to 6,315
+This script processed the 34,586 pcaps files, reduce it to 6,315
 
 src/keyword_occurance.py ~/update_traffic/dataset/ ~/update_traffic/dataset/update_related_pcaps.csv
 For extracting update-related network traffics.
