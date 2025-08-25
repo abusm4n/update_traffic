@@ -13,6 +13,7 @@ data = {
     'Samsung TV': [8, 228, 6, 0],
     'Philips Hub': [0, 509, 0, 0],
     'Allure Speaker': [0, 0, 6, 0],
+    'Uncontrol': [96, 217, 0, 14],
 }
 index = ['firmware', 'update', 'software', 'download']
 df = pd.DataFrame(data, index=index)

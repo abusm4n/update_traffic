@@ -40,7 +40,7 @@ def get_device_by_uuid(uuid):
 # Counters
 true_counter = Counter()
 device_counter = Counter()
-keyword_per_device = defaultdict(Counter)  # NEW: device -> keyword -> count
+keyword_per_device = defaultdict(Counter)  # device -> keyword -> count
 
 # Search for relevant entries
 print("\nDevices with at least one update-related flag set to true:\n")
@@ -59,7 +59,7 @@ for entry in results_data.get("results", []):
         for key in UPDATE_KEYS:
             if update_meta.get(key) is True:
                 true_counter[key] += 1
-                keyword_per_device[device_name][key] += 1  # NEW
+                keyword_per_device[device_name][key] += 1
                 found_true = True
 
         if found_true:
@@ -70,25 +70,34 @@ for entry in results_data.get("results", []):
             print("Update Meta:", update_meta)
             print("-" * 60)
 
-# Print summary counts
+# Summary of TRUE keyword occurrences
 print("\n=== Summary of TRUE keyword occurrences ===")
+total_occurrences = 0
 for key in UPDATE_KEYS:
     print(f"{key}: {true_counter[key]}")
+    total_occurrences += true_counter[key]
+print(f"TOTAL (all keywords): {total_occurrences}")
 
-print("\n=== Device occurrence summary ===")
-for device, count in device_counter.most_common():
-    print(f"{device}: {count}")
+# Device total TRUE keyword occurrences (sorted)
+print("\n=== Device total TRUE keyword occurrences (sorted) ===")
+sorted_device_totals = sorted(
+    ((device, sum(key_counts.values())) for device, key_counts in keyword_per_device.items() if sum(key_counts.values()) > 0),
+    key=lambda x: x[1],
+    reverse=True
+)
+for device, total_for_device in sorted_device_totals:
+    print(f"{device}: {total_for_device}")
 
-# Print keyword summary per device (skipping 0s)
-print("\n=== Per-device keyword TRUE count (non-zero only) ===")
-for device, key_counts in keyword_per_device.items():
+# Per-device keyword TRUE count (sorted by total)
+print("\n=== Per-device keyword TRUE count (sorted by total) ===")
+for device, total_for_device in sorted_device_totals:
+    key_counts = keyword_per_device[device]
     nonzero_keys = {k: v for k, v in key_counts.items() if v > 0}
     if nonzero_keys:
         print(f"\nDevice: {device}")
-        for key, count in nonzero_keys.items():
+        for key, count in sorted(nonzero_keys.items(), key=lambda x: x[1], reverse=True):
             print(f"  {key}: {count}")
 
-
-# Print execution time
+# Execution time
 end_time = time.perf_counter()
 print(f"\n[+] Script finished in {end_time - start_time:.2f} seconds")

@@ -10,7 +10,7 @@ data = {
     'Echoplus': [0, 5, 5, 1],
     'Samsung TV': [0, 0, 5, 3],
     'Invoke': [0, 10, 0, 0],
-    'Unctrl': [0, 21, 14, 0],
+    'Uncontrol': [0, 21, 14, 0],
     'Thermostat': [0, 6, 0, 0],
     'Fire TV': [0, 4, 4, 0],
     'Echo dot': [0, 4, 4, 0],
