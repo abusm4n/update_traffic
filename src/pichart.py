@@ -28,7 +28,7 @@ ax.set_aspect('equal')  # Keep pie circular
 # Legend
 ax.legend(
     wedges, labels,
-    title="Traffic Type",
+    #title="Traffic Type",
     loc="center left",
     bbox_to_anchor=(0.3, 0,5,  0.5)
 )
