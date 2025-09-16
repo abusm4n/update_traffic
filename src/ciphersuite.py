@@ -1,28 +1,28 @@
 import json
 import sys
 from collections import Counter
-import os
 
 # Classification based on known TLS cipher suites (TLS 1.2 mainly)
-# Source info: https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml#tls-parameters-4import json
-
-
-
-# Classification based on known TLS cipher suites (TLS 1.2 mainly)
+# Source: https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml#tls-parameters-4
 SECURE = {
     '1301', '1302', '1303',  # TLS 1.3
     'c02f', 'c02b', 'c030', 'c02c', 'cca9', 'cca8', 'ccaa', '009f', '009e',
+    'c0af', 'c0ad',  'c0ae', 'c0ac',
 }
 RECOMMENDED = {
     '009f', '009e',
     'c023', 'c027', 'c00a', 'c014', 'c009', 'c013',
 }
 WEAK = {
-    '002f', '0033', '0035', '0039', '003c', '003d', '009c', '009d',
+    '002f', '0033', '0035', '0039', '003c', '003d', '009c', '009d', '00a3', '0041', '0084', '0x00BA', '00c0', 'c09c', 'c0a0', 'c09d', 'c0a1', '0044', '0045', '0032',
+    '0087', '0088', 'c0a3', 'c09f', '00a2', 'c0a2', 'c09e', '006a', 'c073', 'c077', '00c4', '00c3', '0040', 'c072',
+    'c076', '00be', '00bd', '0038',
 }
 INSECURE = {
     '0000', '00ff',
 }
+
+
 
 def classify_cipher_suite(hexcode: str) -> str:
     h = hexcode.lower()
@@ -41,6 +41,7 @@ def classify_cipher_suite(hexcode: str) -> str:
         return 'Unknown'
 
 def main(filename):
+    cipher_counts = Counter()
     category_counts = Counter()
 
     with open(filename, 'r') as f:
@@ -78,20 +79,29 @@ def main(filename):
                 if not c:
                     continue
                 if ',' in c:
-                    for p in [p.strip() for p in c.split(',') if p.strip()]:
+                    parts = [p.strip() for p in c.split(',') if p.strip()]
+                    for p in parts:
                         cat = classify_cipher_suite(p)
+                        cipher_counts[p] += 1
                         category_counts[cat] += 1
                 else:
                     cat = classify_cipher_suite(c)
+                    cipher_counts[c] += 1
                     category_counts[cat] += 1
 
-    if not category_counts:
+    if not cipher_counts:
         print("No cipher suites found in input.")
         return
 
-    print("Cipher suite category counts:")
+    # --- Summary of occurrences ---
+    print("\nSummary of categories (occurrences):")
     for cat in ["Secure", "Recommended", "Weak", "Insecure", "Unknown"]:
         print(f"  {cat}: {category_counts[cat]}")
+
+    print(f"\nFound {len(cipher_counts)} unique cipher suites:")
+    for c, count in cipher_counts.most_common():
+        cat = classify_cipher_suite(c)
+        print(f"  {c} : {cat} ({count} occurrences)")
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:

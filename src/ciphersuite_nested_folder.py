@@ -1,25 +1,32 @@
 import json
 import sys
-from collections import Counter
+from collections import Counter, defaultdict
 import os
 
 # Classification based on known TLS cipher suites (TLS 1.2 mainly)
 # Source info: https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml#tls-parameters-4import json
 
+# Classification based on known TLS cipher suites (TLS 1.2 mainly)
+
 
 SECURE = {
     '1301', '1302', '1303',  # TLS 1.3
     'c02f', 'c02b', 'c030', 'c02c', 'cca9', 'cca8', 'ccaa', '009f', '009e',
+    'c0af', 'c0ad',  'c0ae', 'c0ac',
 }
 RECOMMENDED = {
     '009f', '009e',
     'c023', 'c027', 'c00a', 'c014', 'c009', 'c013',
 }
 WEAK = {
-    '002f', '0033', '0035', '0039', '003c', '003d', '009c', '009d',
-}
+    '002f', '0033', '0035', '0039', '003c', '003d', '009c', '009d', '00a3', '0041', '0084', '0x00BA', '00c0', 'c09c', 'c0a0', 'c09d', 'c0a1', '0044', '0045', '0032', 'c026', '003f',
+    '0087', '0088', 'c0a3', 'c09f', '00a2', 'c0a2', 'c09e', '006a', 'c073', 'c077', '00c4', '00c3', '0040', 'c072', 'c029', '00a5', '00a1', '0069', '0068', '0036', '00a4', '0031',
+    'c076', '00be', '00bd', '00ba', '0038', 'c028', 'c028', '000a', 'c028', 'c024', 'c012', 'c008', '0016', '0067', '006b', '0037', '0086', '0085', '0069', '0036', '003e', '0043',
+    '0013', 'c00f', 'c005', 'c00e', 'c004', 'c031', 'c02d' 'c029', 'c025', 'c032', 'c02e', 'c02a', 'c00d', 'c003', 'c02d', 'c026', '0068', '0037', '0086', '0085', '00a0', '0030',
+     '0042', '0010', '000d', '0099', '0098', '0097', '0096', '009a', '0007',
+}  
 INSECURE = {
-    '0000', '00ff',
+    '0000', '00ff', '0005','c011', 'c007', 'c00c', 'c002', '0004', '0015', '0012', '000f', '000c', '0009',
 }
 
 def classify_cipher_suite(hexcode: str) -> str:
@@ -100,10 +107,22 @@ def main(root_dir):
         print("No cipher suites found in input.")
         return
 
-    print("\nSummary of categories:")
-    for cat, count in category_counts.items():
-        print(f"  {cat}: {count}")
+    # --- Summary of occurrences ---
+    print("\nSummary of categories (occurrences):")
+    for cat in ["Secure", "Recommended", "Weak", "Insecure", "Unknown"]:
+        print(f"  {cat}: {category_counts[cat]}")
 
+    # --- Unique cipher suite summary per category ---
+    unique_by_category = defaultdict(set)
+    for c in cipher_counts:
+        cat = classify_cipher_suite(c)
+        unique_by_category[cat].add(c)
+
+    print("\nSummary of categories (unique cipher suites):")
+    for cat in ["Secure", "Recommended", "Weak", "Insecure", "Unknown"]:
+        print(f"  {cat}: {len(unique_by_category[cat])}")
+
+    # --- Detailed unique cipher suites ---
     print("\nUnique cipher suites found:")
     for c, count in cipher_counts.most_common():
         cat = classify_cipher_suite(c)

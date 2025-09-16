@@ -77,84 +77,207 @@ Cipher suite category counts:
 
   ## for neested folders
 
-  python3 src/ciphersuite_nested_folder.py /home/ab/update_traffic/dataset/entropy/iot-data/uk-vpn/allure-spea
-ker
-Processing /home/ab/update_traffic/dataset/entropy/iot-data/uk-vpn/allure-speaker/2019-04-26_13:44:16.229s.json...
-Processing /home/ab/update_traffic/dataset/entropy/iot-data/uk-vpn/allure-speaker/2019-05-01_09:54:19.65s.json...
-Processing /home/ab/update_traffic/dataset/entropy/iot-data/uk-vpn/allure-speaker/2019-04-27_18:30:49.66s.json...
-Processing /home/ab/update_traffic/dataset/entropy/iot-data/uk-vpn/allure-speaker/2019-05-04_01:55:49.65s.json...
-Processing /home/ab/update_traffic/dataset/entropy/iot-data/uk-vpn/allure-speaker/2019-05-06_14:02:50.68s.json...
-Processing /home/ab/update_traffic/dataset/entropy/iot-data/uk-vpn/allure-speaker/2019-05-03_15:51:30.65s.json...
-Processing /home/ab/update_traffic/dataset/entropy/iot-data/uk-vpn/allure-speaker/2019-04-26_14:06:00.202s.json...
-Processing /home/ab/update_traffic/dataset/entropy/iot-data/uk-vpn/allure-speaker/2019-04-26_13:57:10.183s.json...
+  python3 src/ciphersuite_nested_folder.py /home/ab/update_traffic/dataset/entropy/iot-data/uk/appletv/
 
-Summary of categories:
-  Secure: 260
-  Unknown: 410
-  Recommended: 156
-  Weak: 208
-  Insecure: 26
+Summary of categories (unique cipher suites):
+  Secure: 9
+  Recommended: 6
+  Weak: 11
+  Insecure: 1
+  Unknown: 0
 
-Unique cipher suites found:
-  c02f : Secure (45 occurrences)
-  c030 : Secure (33 occurrences)
-  c02c : Secure (26 occurrences)
-  009f : Secure (26 occurrences)
-  cca9 : Secure (26 occurrences)
-  cca8 : Secure (26 occurrences)
-  ccaa : Secure (26 occurrences)
-  c02b : Secure (26 occurrences)
-  009e : Secure (26 occurrences)
-  c024 : Unknown (26 occurrences)
-  c028 : Unknown (26 occurrences)
-  006b : Unknown (26 occurrences)
-  c023 : Recommended (26 occurrences)
-  c027 : Recommended (26 occurrences)
-  0067 : Unknown (26 occurrences)
-  c00a : Recommended (26 occurrences)
-  c014 : Recommended (26 occurrences)
-  0039 : Weak (26 occurrences)
-  c009 : Recommended (26 occurrences)
-  c013 : Recommended (26 occurrences)
-  0033 : Weak (26 occurrences)
-  009d : Weak (26 occurrences)
-  009c : Weak (26 occurrences)
-  003d : Weak (26 occurrences)
-  003c : Weak (26 occurrences)
-  0035 : Weak (26 occurrences)
-  002f : Weak (26 occurrences)
-  00ff : Insecure (26 occurrences)
-  00a3 : Unknown (9 occurrences)
-  c0af : Unknown (9 occurrences)
-  c0ad : Unknown (9 occurrences)
-  c0a3 : Unknown (9 occurrences)
-  c09f : Unknown (9 occurrences)
-  00a2 : Unknown (9 occurrences)
-  c0ae : Unknown (9 occurrences)
-  c0ac : Unknown (9 occurrences)
-  c0a2 : Unknown (9 occurrences)
-  c09e : Unknown (9 occurrences)
-  006a : Unknown (9 occurrences)
-  c073 : Unknown (9 occurrences)
-  c077 : Unknown (9 occurrences)
-  00c4 : Unknown (9 occurrences)
-  00c3 : Unknown (9 occurrences)
-  0040 : Unknown (9 occurrences)
-  c072 : Unknown (9 occurrences)
-  c076 : Unknown (9 occurrences)
-  00be : Unknown (9 occurrences)
-  00bd : Unknown (9 occurrences)
-  0038 : Unknown (9 occurrences)
-  0088 : Unknown (9 occurrences)
-  0087 : Unknown (9 occurrences)
-  0032 : Unknown (9 occurrences)
-  0045 : Unknown (9 occurrences)
-  0044 : Unknown (9 occurrences)
-  c0a1 : Unknown (9 occurrences)
-  c09d : Unknown (9 occurrences)
-  c0a0 : Unknown (9 occurrences)
-  c09c : Unknown (9 occurrences)
-  00c0 : Unknown (9 occurrences)
-  00ba : Unknown (9 occurrences)
-  0084 : Unknown (9 occurrences)
-  0041 : Unknown (9 occurrences)
+
+
+
+
+  python3 src/ciphersuite_nested_folder.py /home/ab/update_traffic/dataset/entropy/iot-data/uk/roku-tv/
+
+Summary of categories (unique cipher suites):
+  Secure: 6
+  Recommended: 6
+  Weak: 66
+  Insecure: 6
+  Unknown: 0
+
+
+
+
+python3 src/ciphersuite_nested_folder.py /home/ab/update_traffic/dataset/entropy/iot-data/uk/echodot/
+
+Summary of categories (unique cipher suites):
+  Secure: 8
+  Recommended: 6
+  Weak: 52
+  Insecure: 1
+  Unknown: 0
+
+
+
+python3 src/ciphersuite_nested_folder.py /home/ab/update_traffic/dataset/entropy/iot-data/uk/samsungtv-wired/
+
+Summary of categories (unique cipher suites):
+  Secure: 8
+  Recommended: 6
+  Weak: 56
+  Insecure: 7
+  Unknown: 0
+
+  Processing /home/ab/update_traffic/dataset/entropy/iot-data/uk-vpn/samsungtv-wired/2019-04-26_13:44:15.226s.json...
+
+Summary of categories (occurrences):
+  Secure: 3387
+  Recommended: 2922
+  Weak: 27291
+  Insecure: 505
+  Unknown: 0
+
+Summary of categories (unique cipher suites):
+  Secure: 6
+  Recommended: 6
+  Weak: 56
+  Insecure: 7
+  Unknown: 0
+
+
+
+
+python3 src/ciphersuite_nested_folder.py /home/ab/update_traffic/dataset/entropy/iot-data/us/echoplus/
+
+Summary of categories (unique cipher suites):
+  Secure: 6
+  Recommended: 6
+  Weak: 67
+  Insecure: 4
+  Unknown: 0
+
+
+
+
+
+
+python3 src/ciphersuite_nested_folder.py /home/ab/update_traffic/dataset/entropy/iot-data/uk-vpn/honeywell-thermostat/
+Summary of categories (occurrences):
+  Secure: 10
+  Recommended: 26
+  Weak: 52
+  Insecure: 0
+  Unknown: 0
+
+Summary of categories (unique cipher suites):
+  Secure: 2
+  Recommended: 6
+  Weak: 13
+  Insecure: 0
+  Unknown: 0
+
+
+
+python3 src/ciphersuite_nested_folder.py /home/ab/update_traffic/dataset/entropy/iot-data/us/amcrest-cam-wired/
+
+
+Summary of categories (occurrences):
+  Secure: 28
+  Recommended: 24
+  Weak: 184
+  Insecure: 4
+  Unknown: 4
+
+Summary of categories (unique cipher suites):
+  Secure: 6
+  Recommended: 6
+  Weak: 46
+  Insecure: 1
+  Unknown: 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+python3 src/ciphersuite_nested_folder.py /home/ab/update_traffic/dataset/entropy/iot-data/us/dlink-mov/
+
+
+Summary of categories (occurrences):
+  Secure: 63
+  Recommended: 54
+  Weak: 333
+  Insecure: 63
+  Unknown: 126
+
+Summary of categories (unique cipher suites):
+  Secure: 6
+  Recommended: 6
+  Weak: 37
+  Insecure: 7
+  Unknown: 14
+
+
+
+
+
+
+
+python3 src/ciphersuite_nested_folder.py /home/ab/update_traffic/dataset/entropy/iot-data/us/lgtv-wired/
+
+Summary of categories (occurrences):
+  Secure: 318
+  Recommended: 252
+  Weak: 2457
+  Insecure: 165
+  Unknown: 0
+
+Summary of categories (unique cipher suites):
+  Secure: 6
+  Recommended: 6
+  Weak: 67
+  Insecure: 12
+  Unknown: 0
+
+
+
+
+
+python3 src/ciphersuite_nested_folder.py /home/ab/update_traffic/dataset/entropy/iot-data/uk/t-wemo-plug/
+Summary of categories (occurrences):
+  Secure: 0
+  Recommended: 0
+  Weak: 1196
+  Insecure: 92
+  Unknown: 0
+
+Summary of categories (unique cipher suites):
+  Secure: 0
+  Recommended: 0
+  Weak: 12
+  Insecure: 1
+  Unknown: 0
+
+
+
+
+
+
+
+python3 src/ciphersuite_nested_folder.py /home/ab/update_traffic/dataset/entropy/iot-data/uk/allure-speaker/
+
+
+  Summary of categories (occurrences):
+  Secure: 346
+  Recommended: 186
+  Weak: 642
+  Insecure: 31
+  Unknown: 0
+
+Summary of categories (unique cipher suites):
+  Secure: 13
+  Recommended: 6
+  Weak: 42
+  Insecure: 1
+  Unknown: 0
