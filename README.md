@@ -260,6 +260,9 @@ Summary of categories (unique cipher suites):
   Unknown: 0
 
 
+"cweId": "CWE-310",
+"cweId": "NVD-CWE-noinfo"
+
 
 
 
