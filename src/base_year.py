@@ -5,18 +5,8 @@ import csv
 
 # Directory containing  CVE JSON files
 # Directory to save the output CSV file
-#INPUT_DIR = './vendor_sw'
-#OUTPUT_CSV = 'cve_year_base.csv'
 
 
-#INPUT_DIR = './dataset/cve_sw'
-#OUTPUT_CSV = './csv/cve_sw_year_base.csv'
-
-#INPUT_DIR = './dataset/cve_fw'
-#OUTPUT_CSV = './csv/cve_fw_year_base.csv'
-
-#INPUT_DIR = './dataset/vendor_sw'
-#OUTPUT_CSV = './csv/vendor_sw_year_base.csv'
 
 INPUT_DIR = './cve/all'
 OUTPUT_CSV = './csv/all_base.csv'
@@ -57,7 +47,7 @@ def process_file(path):
     metrics = data.get('containers', {}).get('cna', {}).get('metrics', [])
     base_score = extract_base_score(metrics)
     if year and base_score is not None:
-        return year, base_score, 'vendor'
+        return year, base_score, 'update_traffic'
     return None
 
 def main():
