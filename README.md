@@ -2,7 +2,7 @@
 This repository accompanies the artifacts of the research paper: Update Traffic Analysis
 
 
-## Update-related traffic patterns (RQ1a),
+## Update-related traffic patterns (RQ1a)
 ...
  
 ...
