@@ -1,293 +1,42 @@
 # Update Traffic Analysis for IoT Devices
+This repository accompanies the artifacts of the research paper: Update Traffic Analysis
 
 
+## Update-related traffic patterns (RQ1a),
+...
+ 
+...
 
-## First exract update-related_kewords,
-This script processed the 34,586 pcaps files, reduce it to 6,315
 
-src/keyword_occurance.py ~/update_traffic/dataset/ ~/update_traffic/dataset/update_related_pcaps.csv
-For extracting update-related network traffics.
-Found 6,315 network traffic, this took  4:02:53 hours.
+## Payload Analysis (RQ1b)
 
+...
+ 
+...
 
-## Exracting encrypted and unecrypted packets from the dataset 
+## Entropy Analysis (RQ2a)
 
+...
+ 
+...
 
-python3 src/extract_http.py ~/update_traffic/dataset/ ~/update_traffic/extracted/foldername
-For extracting http traffics from pcap files
 
 
 
-python3 src/extract_all.py ~/update_traffic/imc19_dataset/ ~/update_traffic/dataset/extracted_all/
+## Ciphersuite Evaluation (RQ2b) 
 
+...
+ 
+...
 
 
+## Vulnerability Implications of Insecure and  Weak Update Traffic (RQ3)
+...
+ 
+...
 
 
-python3 src/analysis.py  ~/update_traffic/extracted/
-For analzying extracted pcap
+## Replicability
 
 
-
-
-
-
-
-
-
-
-
-python3 src/check_true_updates.py ~/update_traffic/extracted_iot-data/
-
-
-
-
-python3 src/generatecharts.py  ~/update_traffic/tls_iot-data/  ~/update_traffic/output/
-
-
-
-
-
-
-
-
-#####
-
-extracting 
-
-./intl-iot/encryption/encryption.sh  ~/update_traffic/update_keywords/dataset/iot-data/uk/allure-speaker/android_lan_audio_off/2019-05-04_19:52:11.65s.pcap ~/update_traffic/update_keywords/dataset/sample.csv ~/update_traffic/update_keywords/dataset/sample.json
-
-
-
-
-####
-Entropy
-
-
-
-####
-Cipher suies and certificate: Examples
-python3 src/ciphersuite.py /home/ab/update_traffic/dataset/entropy/iot-data/uk-vpn/allure-speaker/2019-04-26_14\:06\:00.202s.json 
-Cipher suite category counts:
-  Secure: 70
-  Recommended: 42
-  Weak: 56
-  Insecure: 7
-  Unknown: 130
-
-  ## for neested folders
-
-  python3 src/ciphersuite_nested_folder.py /home/ab/update_traffic/dataset/entropy/iot-data/uk/appletv/
-
-Summary of categories (unique cipher suites):
-  Secure: 9
-  Recommended: 6
-  Weak: 11
-  Insecure: 1
-  Unknown: 0
-
-
-
-
-
-  python3 src/ciphersuite_nested_folder.py /home/ab/update_traffic/dataset/entropy/iot-data/uk/roku-tv/
-
-Summary of categories (unique cipher suites):
-  Secure: 6
-  Recommended: 6
-  Weak: 66
-  Insecure: 6
-  Unknown: 0
-
-
-
-
-python3 src/ciphersuite_nested_folder.py /home/ab/update_traffic/dataset/entropy/iot-data/uk/echodot/
-
-Summary of categories (unique cipher suites):
-  Secure: 8
-  Recommended: 6
-  Weak: 52
-  Insecure: 1
-  Unknown: 0
-
-
-
-python3 src/ciphersuite_nested_folder.py /home/ab/update_traffic/dataset/entropy/iot-data/uk/samsungtv-wired/
-
-Summary of categories (unique cipher suites):
-  Secure: 8
-  Recommended: 6
-  Weak: 56
-  Insecure: 7
-  Unknown: 0
-
-  Processing /home/ab/update_traffic/dataset/entropy/iot-data/uk-vpn/samsungtv-wired/2019-04-26_13:44:15.226s.json...
-
-Summary of categories (occurrences):
-  Secure: 3387
-  Recommended: 2922
-  Weak: 27291
-  Insecure: 505
-  Unknown: 0
-
-Summary of categories (unique cipher suites):
-  Secure: 6
-  Recommended: 6
-  Weak: 56
-  Insecure: 7
-  Unknown: 0
-
-
-
-
-python3 src/ciphersuite_nested_folder.py /home/ab/update_traffic/dataset/entropy/iot-data/us/echoplus/
-
-Summary of categories (unique cipher suites):
-  Secure: 6
-  Recommended: 6
-  Weak: 67
-  Insecure: 4
-  Unknown: 0
-
-
-
-
-
-
-python3 src/ciphersuite_nested_folder.py /home/ab/update_traffic/dataset/entropy/iot-data/uk-vpn/honeywell-thermostat/
-Summary of categories (occurrences):
-  Secure: 10
-  Recommended: 26
-  Weak: 52
-  Insecure: 0
-  Unknown: 0
-
-Summary of categories (unique cipher suites):
-  Secure: 2
-  Recommended: 6
-  Weak: 13
-  Insecure: 0
-  Unknown: 0
-
-
-
-python3 src/ciphersuite_nested_folder.py /home/ab/update_traffic/dataset/entropy/iot-data/us/amcrest-cam-wired/
-
-
-Summary of categories (occurrences):
-  Secure: 28
-  Recommended: 24
-  Weak: 184
-  Insecure: 4
-  Unknown: 4
-
-Summary of categories (unique cipher suites):
-  Secure: 6
-  Recommended: 6
-  Weak: 46
-  Insecure: 1
-  Unknown: 1
-
-
-
-
-
-
-
-
-
-
-
-
-
-python3 src/ciphersuite_nested_folder.py /home/ab/update_traffic/dataset/entropy/iot-data/us/dlink-mov/
-
-
-Summary of categories (occurrences):
-  Secure: 63
-  Recommended: 54
-  Weak: 333
-  Insecure: 63
-  Unknown: 126
-
-Summary of categories (unique cipher suites):
-  Secure: 6
-  Recommended: 6
-  Weak: 37
-  Insecure: 7
-  Unknown: 14
-
-
-
-
-
-
-
-python3 src/ciphersuite_nested_folder.py /home/ab/update_traffic/dataset/entropy/iot-data/us/lgtv-wired/
-
-Summary of categories (occurrences):
-  Secure: 318
-  Recommended: 252
-  Weak: 2457
-  Insecure: 165
-  Unknown: 0
-
-Summary of categories (unique cipher suites):
-  Secure: 6
-  Recommended: 6
-  Weak: 67
-  Insecure: 12
-  Unknown: 0
-
-
-
-
-
-python3 src/ciphersuite_nested_folder.py /home/ab/update_traffic/dataset/entropy/iot-data/uk/t-wemo-plug/
-Summary of categories (occurrences):
-  Secure: 0
-  Recommended: 0
-  Weak: 1196
-  Insecure: 92
-  Unknown: 0
-
-Summary of categories (unique cipher suites):
-  Secure: 0
-  Recommended: 0
-  Weak: 12
-  Insecure: 1
-  Unknown: 0
-
-
-"cweId": "CWE-310",
-"cweId": "NVD-CWE-noinfo"
-
-
-
-
-
-
-python3 src/ciphersuite_nested_folder.py /home/ab/update_traffic/dataset/entropy/iot-data/uk/allure-speaker/
-
-
-  Summary of categories (occurrences):
-  Secure: 346
-  Recommended: 186
-  Weak: 642
-  Insecure: 31
-  Unknown: 0
-
-Summary of categories (unique cipher suites):
-  Secure: 13
-  Recommended: 6
-  Weak: 42
-  Insecure: 1
-  Unknown: 0
-
-
-
-
-
-
-
+More details on how to replicate this repo is on the way.
