@@ -64,7 +64,7 @@ extracting
 ./intl-iot/encryption/encryption.sh  ~/update_traffic/update_keywords/dataset/iot-data/uk/allure-speaker/android_lan_audio_off/2019-05-04_19:52:11.65s.pcap ~/update_traffic/update_keywords/dataset/sample.csv ~/update_traffic/update_keywords/dataset/sample.json
 
 
-
+./intl-IoT/encryption/encryption.sh ~/update_traffic/controlled/dataset/eufy/eufy.pcapng ~/update_traffic/controlled/entropy/eufy.csv ~/update_traffic/controlled/entropy/eufy.json
 
 ####
 Entropy

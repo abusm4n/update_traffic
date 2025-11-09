@@ -74,15 +74,36 @@ check_args_files() {
     ek_json=$3
 
     #Check that the input pcap file is a pcap file and exists
-    if [[ $in_pcap != *.pcap ]]
+    #if [[ $in_pcap != *.pcap ]]
+    #then
+     #   errors=true
+      #  echo -e "${red}${path}: Error: $in_pcap is not a pcap file.$end" >&2
+    #elif ! [ -e $in_pcap ]
+    #then
+     #   errors=true
+      #  echo -e "${red}${path}: Error: The input pcap file $in_pcap does not exist.$end" >&2
+    #fi
+
+
+    # Check that the input pcap file is a pcap or pcapng file and exists
+    if [[ ! $in_pcap =~ \.pcap$ && ! $in_pcap =~ \.pcapng$ ]]
     then
         errors=true
-        echo -e "${red}${path}: Error: $in_pcap is not a pcap file.$end" >&2
-    elif ! [ -e $in_pcap ]
+        echo -e "${red}${path}: Error: $in_pcap is not a pcap or pcapng file.$end" >&2
+    elif ! [ -e "$in_pcap" ]
     then
         errors=true
-        echo -e "${red}${path}: Error: The input pcap file $in_pcap does not exist.$end" >&2
+        echo -e "${red}${path}: Error: The input capture file $in_pcap does not exist.$end" >&2
     fi
+
+
+
+
+
+
+
+
+
 
     #Check that the output CSV file is a CSV file
     if [[ $out_csv != *.csv ]]
