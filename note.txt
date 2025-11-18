@@ -303,3 +303,42 @@ Summary of categories (unique cipher suites):
 
 
 
+
+
+
+## Extracting all the protocols from pcap
+ 
+tshark -r ./controlled/dataset/tapo/tapo.pcapng -q -z io,phs
+
+## With certain protocol
+tshark -r ./controlled/dataset/tapo/tapo.pcapng -Y "ip.addr == 10.42.0.173" -T fields -e frame.protocols     | tr ':' '\n' | sort -u
+tshark -r ./controlled/dataset/eufy/eufy.pcapng -Y "ip.addr == 10.42.0.160" -T fields -e frame.protocols     | tr ':' '\n' | sort -u
+tshark -r ./controlled/dataset/eufy/eufi_full_updated.pcapng -T fields -e frame.protocols  | tr ':' '\n' | sort -u
+tshark -r ./controlled/dataset/xiaomi/xiaomi.pcapng -Y "ip.addr == 10.42.0.207" -T fields -e frame.protocols     | tr ':' '\n' | sort -u
+
+
+
+
+
+
+## Extract tls_
+tshark -r ./controlled/dataset/xiaomi/xiaomi.pcapng -Y "ip.addr == 10.42.0.207"  -T fields -e tls.record.version | sort -u
+
+
+
+tshark -r ./controlled/dataset/xiaomi/xiaomi.pcapng -Y "ip.addr == 10.42.0.207"     -T fields -e _ws.col.Protocol | sort -u
+
+ tshark -r ./controlled/dataset/tapo/tapo.pcapng -Y "ip.addr == 10.42.0.173"     -T fields -e _ws.col.Protocol | sort -u
+tshark -r ./controlled/dataset/eufy/eufy.pcapng -Y "ip.addr == 10.42.0.160"     -T fields -e _ws.col.Protocol | sort -u
+tshark -r ./controlled/dataset/dlink/dlink.pcapng -Y "ip.addr == 10.42.0.152"     -T fields -e _ws.col.Protocol | sort -u
+ tshark -r ./controlled/dataset/sony_tv/sony_tv.pcapng -Y "ip.addr == 10.42.0.157"     -T fields -e _ws.col.Protocol | sort -u
+
+
+
+ ### extracting http files larger than 4 megabytes
+  tshark -r ./controlled/dataset/tapo/tapo.pcapng -Y "http.content_length > 4000000"     -T fields -e http.content_length -e http.request.full_uri
+
+
+### extracting file size, this works well
+  tshark -r ./controlled/dataset/xiaomi/xiaomi.pcapng -Y "tcp && ip.addr == 10.42.0.207"     -T fields -e tcp.stream -e frame.len     | awk '{bytes[$1]+=$2} END {for(s in bytes) print "Stream", s, ":", bytes[s],"bytes"}'
+  
