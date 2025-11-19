@@ -2,10 +2,10 @@ import json
 import sys
 from collections import Counter
 
-# Classification based on known TLS cipher suites (TLS 1.2 mainly)
+# Classification based on known TLS cipher suites (TLS 1.2 mainly)  # TLS 1, 1.2 and 1.3 
 # Source: https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml#tls-parameters-4
 SECURE = {
-    '1301', '1302', '1303',  # TLS 1.3
+    '1301', '1302', '1303', 
     'c02f', 'c02b', 'c030', 'c02c', 'cca9', 'cca8', 'ccaa', '009f', '009e',
     'c0af', 'c0ad',  'c0ae', 'c0ac',
 }
@@ -16,10 +16,12 @@ RECOMMENDED = {
 WEAK = {
     '002f', '0033', '0035', '0039', '003c', '003d', '009c', '009d', '00a3', '0041', '0084', '0x00BA', '00c0', 'c09c', 'c0a0', 'c09d', 'c0a1', '0044', '0045', '0032',
     '0087', '0088', 'c0a3', 'c09f', '00a2', 'c0a2', 'c09e', '006a', 'c073', 'c077', '00c4', '00c3', '0040', 'c072',
-    'c076', '00be', '00bd', '0038',
+    'c076', '00be', '00bd', '0038', '0031', '0030', 'c004', '009a', '0099','0098', '0097', '0096', 'c008', 'C012', '00a5', '00a1','000a', 'c012', '006b', '0069', '0068',
+    '0037', '0036', '00a4', '00a0', '0067', '003f', '003e', '0013', '0016', '0010', '000d', 'c028', 'c032', 'c02e', 'c02a', 'c026','c00f', 'c005', 'c031', 'c02d', 'c029',
+    'c025', 'c00e', 'c024', '0043', '0086', '0085', '0042', '0007', 'c00d', 'c003',
 }
 INSECURE = {
-    '0000', '00ff',
+    '0000', '00ff', '0005', '0004', '0015', '0012', '000f', '000c', '0009'
 }
 
 
