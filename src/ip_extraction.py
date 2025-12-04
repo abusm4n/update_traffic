@@ -53,10 +53,23 @@ def save_contacts_csv(filename, contacts):
 
 
 if __name__ == "__main__":
-    pcap_path = "~/update_traffic/controlled/dataset/tapo/tapo.pcapng"
+    # pcap_path = "~/update_traffic/controlled/dataset/tapo/tapo.pcapng"
+    # filter_ips = {"10.42.0.173"}
 
-    # Specify IP(s) to filter, or leave empty for all IPs
-    filter_ips = {"10.42.0.173"}  # only include this IP in src or dst
+    # pcap_path = "~/update_traffic/controlled/dataset/eufy/eufy.pcapng"
+    # filter_ips = {"10.42.0.160"} 
+
+    # pcap_path = "~/update_traffic/controlled/dataset/xiaomi/xiaomi.pcapng"
+    # filter_ips = {"10.42.0.207"} 
+
+    # pcap_path = "~/update_traffic/controlled/dataset/dlink/dlink.pcapng"
+    #filter_ips = {"10.42.0.152"} 
+
+    pcap_path = "~/update_traffic/controlled/dataset/sony_tv/sony_tv.pcapng"
+    filter_ips = {"10.42.0.157"} 
+
+
+ 
 
     contacts = extract_unique_contacts(pcap_path, filter_ips=filter_ips)
 
@@ -64,7 +77,4 @@ if __name__ == "__main__":
     for (src, dst), count in sorted(contacts.items(), key=lambda x: x[1], reverse=True):
         print(f"{src} → {dst}   ({count} packets)")
 
-    save_contacts_csv(
-        "~/update_traffic/controlled/dataset/tapo/ip_contacts_filtered.csv",
-        contacts
-    )
+    save_contacts_csv("~/update_traffic/controlled/dataset/sony_tv/ip_contacts.csv",contacts)
