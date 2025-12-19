@@ -1,8 +1,14 @@
 import pandas as pd
 
 # ---- CONFIG ----
-input_file = "~/update_traffic/controlled/entropy/sony_tv.csv"        # Your original CSV file
-output_file = "~/update_traffic/controlled/entropy/sony_formatted.csv"  # Output file to save
+#input_file = "~/update_traffic/controlled/entropy/sony_tv.csv"        # Your original CSV file
+#output_file = "~/update_traffic/controlled/entropy/sony_formatted.csv"  # Output file to save
+input_file = "~/update_traffic/controlled/entropy/tapo.csv"        # Your original CSV file
+output_file = "~/update_traffic/controlled/entropy/_formatted.csv"  # Output file to save
+
+
+
+
 
 # ---- READ INPUT CSV ----
 df = pd.read_csv(input_file)
