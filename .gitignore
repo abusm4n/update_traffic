@@ -1,10 +1,11 @@
 # Ignore folders, and all untracked folders folders
+controlled
+retrospective/
 dataset/
 extracted/
 imc19_dataset/
 extracted_keywords/
 cvelistV5-main/
-controlled/entropy/
 
 
 
