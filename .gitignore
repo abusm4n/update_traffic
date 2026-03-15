@@ -29,4 +29,5 @@ sample.csv
 
 
 # Ignore virtual environment
+.venv/
  .venv/
