@@ -26,3 +26,7 @@ sample.csv
 
 # ignor json everywhere
 **/*.json
+
+
+# Ignore virtual environment
+ .venv/
