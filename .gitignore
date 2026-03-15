@@ -31,3 +31,7 @@ sample.csv
 # Ignore virtual environment
 .venv/
  .venv/
+
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
